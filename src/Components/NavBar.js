@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState } from 'react';
 import styled from 'styled-components'
 import logo from '../Assets/logo.png'
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
@@ -8,7 +9,16 @@ import DvrOutlinedIcon from '@mui/icons-material/DvrOutlined';
 import AccountTreeOutlinedIcon from '@mui/icons-material/AccountTreeOutlined';
 import AssignmentIndOutlinedIcon from '@mui/icons-material/AssignmentIndOutlined';
 import ContactMailOutlinedIcon from '@mui/icons-material/ContactMailOutlined';
+import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
+import CloseIcon from '@mui/icons-material/Close';
 function NavBar() {
+    let [sidebarStatus, setSidebarStatus] = useState(false)
+    const handleOpen = () => {
+        setSidebarStatus(true)
+    }
+    const handleClose = () => {
+        setSidebarStatus(false)
+    }
     return (
         <Container>
             <PortfolioLogo>
@@ -51,9 +61,43 @@ function NavBar() {
 
 
             </Menu>
-            <MenuIconWrapper>
-
+            <MenuIconWrapper onClick={handleOpen}>
+                <MenuOutlinedIcon />
             </MenuIconWrapper>
+            <Sidebar status={sidebarStatus}>
+               <CloseWrapper>
+                   <CustomClose onClick={handleClose} />
+               </CloseWrapper>
+               <li> <a>
+                    <HomeOutlinedIcon />
+                    <span>HOME</span>
+                </a></li>
+               <li> <a>
+                    <PersonOutlineOutlinedIcon />
+                    <span>ABOUT</span>
+                </a></li>
+               <li> <a>
+                    <ArticleOutlinedIcon />
+                    <span>EDUCATION</span>
+                </a></li>
+               <li> <a>
+                    <DvrOutlinedIcon />
+                    <span>SKILLSET</span>
+                </a></li>
+               <li> <a>
+                    <AccountTreeOutlinedIcon />
+                    <span>PROJECTS</span>
+                </a></li>
+               <li> <a>
+                    <AssignmentIndOutlinedIcon />
+                    <span>RESUME</span>
+                </a></li>
+               <li> <a>
+                    <ContactMailOutlinedIcon />
+
+                    <span>CONTACT</span>
+                </a></li>
+            </Sidebar>
         </Container>
     )
 }
@@ -121,5 +165,46 @@ const Menu = styled.div`
 `
 
 const MenuIconWrapper = styled.div`
+    cursor: pointer;
+    @media (min-width: 760px){
+        display: none;
+    }
+`
+const Sidebar = styled.div`
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: white;
+    width: 280px;
+    z-index: 10;
+    color: black;
+    list-style: none;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    transform: ${props => props.status ? 'translateX(0)' : 'translateX(100%)'};
+    transition: transform 0.2s ease-in;
+    li{
+        cursor: pointer;
+        padding: 15px 0;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.4);
+        a {
+            display: flex;
+            align-items: center;
+            span {
+                margin-left: 10px;
+            }
+        }
+    }
 
+`
+
+const CloseWrapper = styled.div`
+    display: flex;
+    justify-content: flex-end;
+`
+const CustomClose = styled(CloseIcon)`
+    cursor: pointer;
 `
