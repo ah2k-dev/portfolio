@@ -17,8 +17,8 @@ function App() {
   return (
     <div>
         <Preloader load={load} />
-        <NavBar />
       <div className={load ? "no-App" : "App"}>
+        <NavBar />
         <Home />
         <About />
       </div>
