@@ -115,8 +115,9 @@ const Container = styled.div`
     align-items: center;
     padding: 0 10px;
     z-index: 1;
-    @media (max-width: 760px){
+    @media (max-width: 1200px){
         justify-content: space-between;
+        padding: 0 30px;
     }
 `
 const PortfolioLogo = styled.div`
@@ -159,14 +160,14 @@ const Menu = styled.div`
                 transform: scaleX(1);
             }
     }
-    @media (max-width: 760px){
+    @media (max-width: 1200px){
         display: none;
     }
 `
 
 const MenuIconWrapper = styled.div`
     cursor: pointer;
-    @media (min-width: 760px){
+    @media (min-width: 1200px){
         display: none;
     }
 `
